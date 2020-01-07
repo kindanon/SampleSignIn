@@ -1,0 +1,64 @@
+
+body{
+    font-family: sans-serif;
+    background-color: black; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+.superclass{
+    text-align: center;
+    border-radius: 1rem;
+    background-color: rgb(132, 132, 132);
+    padding: .5rem;
+    box-shadow: 0px 0px 25px blueviolet;
+}
+.superclass input{background-color: transparent;}
+
+label{cursor: text;}
+.signInput{
+	outline: none;
+	position: relative;
+	width: 300px;
+	border: 0;
+}
+.signInput input{
+	outline: none;
+	border: 0;
+	padding: 1.5rem 0rem .25rem 2rem;
+    width: 95%;
+    box-sizing: border-box;
+	border: solid;
+	border-width: 0 0 2px;
+  	border-color: rgb(33, 33, 33)
+}
+.signInput input:focus{
+  	border-color: rgb(33, 33, 165);
+}
+.signInput label {
+    padding-left: 2rem;
+    position: absolute; 
+	-webkit-transform-origin: top left;
+        	transform-origin: top left;
+  	-webkit-transform: translate(0, 1.5rem) scale(1);
+        	transform: translate(0, 1.5rem) scale(1);
+      transition: all .1s ease-in-out;
+    
+}
+.signInput.active label {
+	-webkit-transform: translate(-1.5rem, .20rem) scale(0.75);
+       		transform: translate(-1.5rem, .20rem) scale(0.75);
+}
+
+#pass:focus + #requirements{display: block;}
+#requirements{display: none;}
+
+#reqlist li{color: red;}
+
+.signInput b{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: .5rem;
+   
+}

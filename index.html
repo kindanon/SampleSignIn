@@ -1,65 +1,36 @@
 <!DOCTYPE html>
 <head>
 <!-- inputs -->
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-">
+<link rel="stylesheet" href="custom.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<script src="scripts.js"></script>
 <!-- /inputs -->
 
 <!-- styles -->
 <style>
-label{cursor: text;}
-.signInput{
-	outline: none;
-	position: relative;
-	width: 300px;
-	border: 0;
-}
-.signInput input{
-	outline: none;
-	border: 0;
-	padding: 1.5rem 0 .25rem;
-	width: 100%;
-	border: solid;
-	border-width: 0 0 2px;
-  	border-color: rgb(33, 33, 33)
-}
-.signInput input:focus{
-  	border-color: rgb(33, 33, 165);
-}
-.signInput label {
-	position: absolute; 
-	-webkit-transform-origin: top left;
-        	transform-origin: top left;
-  	-webkit-transform: translate(0, 1.5rem) scale(1);
-        	transform: translate(0, 1.5rem) scale(1);
-  	transition: all .1s ease-in-out;
-}
-.signInput.active label {
-	-webkit-transform: translate(0, .33rem) scale(0.75);
-       		transform: translate(0, .33rem) scale(0.75);
-}
 
-#pass:focus + #requirements{display: block;}
-#requirements{display: none;}
-
-#reqlist li{color: red;}
 </style>
 <!-- /styles -->
 </head>
 
 <body>
-
+<div class="superclass">
 <div class="signInput">
 <label for="fname">first name</label>
+<b>&#x1F464;</b>
 <input id="fname"></input>
 </div>
 
 <div class="signInput">
 <label for="lname">last name</label>
+<b>&#x1F464;</b>
 <input id="lname"></input>
 </div>
 
 <div class="signInput">
 <label for="uname">screen name</label>
+<b>&#x23FB;</b>
 <input id="uname"></input>
 </div>
 
@@ -94,53 +65,12 @@ label{cursor: text;}
 </div>
 
 <div>
-<label for="contine">continue?</label>
-<input id="contine"></input>
+<button id="contine">continue?</button>
 </div>
-
+</div>
 <!-- scripts -->
 <script>
-	
-	//make labels do the thing
-	const signInput = document.querySelectorAll('.signInput');
-	signInput.forEach(elem => {
-		const inputField = elem.querySelector('input');
-		const inputClass = elem.classList;
-		if (elem.querySelector("input").value)
-			inputClass.add("active");
 
-		inputField.addEventListener('focus', () => {
-			inputClass.add('active');});
-		inputField.addEventListener('blur', () => {
-			if(!inputField.value){inputClass.remove('active');}});
-	});
-
-	//realtime feedback stuff
-	document.getElementById("pass").onkeyup = function(){
-		var password = document.getElementById("pass").value;
-
-		var reqlist = document.getElementById("reqlist").getElementsByTagName("li");
-
-
-		if (password.length < 6) {//length
-			console.log(reqlist[0]);
-		}
-		if(/[A-Z]/.test(password)) {//uppercase
-
-		}
-		if(/[a-z]/.test(password)) {//lowercase
-
-		}
-		if(/\d/.test(password)) {//numbers 
-
-		} 
-		if(/\W/.test(password)) {//special
-		
-		}
-		if(/[^\u0000-\u00ff]/.test(password)){
-			//("no unicode please, it frightens the programmers")
-		}
-	};
-	</script>
-	<!-- /scripts -->
+</script>
+<!-- /scripts -->
 </body>
