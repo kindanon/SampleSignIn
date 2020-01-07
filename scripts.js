@@ -1,6 +1,5 @@
-
-window.onload = function() {
 //make labels do the thing
+function labels(){
 const signInput = document.querySelectorAll('.signInput');
 signInput.forEach(elem => {
 	const inputField = elem.querySelector('input');
@@ -11,29 +10,52 @@ signInput.forEach(elem => {
 		inputClass.add('active');});
 	inputField.addEventListener('blur', () => {
 		if(!inputField.value){inputClass.remove('active');}});
-});
-	//realtime feedback stuff
-document.getElementById("pass").onkeyup = function(){
-	var password = document.getElementById("pass").value;
-		var reqlist = document.getElementById("reqlist").getElementsByTagName("li");
+})}
 
+//realtime feedback stuff
+function feedback(password){
 	if (password.length < 6) {//length
-		console.log(reqlist[0]);
+		return("1");
 	}
 	if(/[A-Z]/.test(password)) {//uppercase
-    
+		return("1");
     }    
 	if(/[a-z]/.test(password)) {//lowercase
+		return("1");
 	}
-    
     if(/\d/.test(password)) {//numbers 
+		return("1");
 	} 
     
     if(/\W/.test(password)) {//special
-	
+		return("1");
 	}
 	if(/[^\u0000-\u00ff]/.test(password)){
-		//("no unicode please, it frightens the programmers")
-	}
-};
+		return("no unicode please, it frightens the programmers");
+}}
+
+//realtime diffuclty bar
+function difficulty(){
+	var dbar = document.getElementById("dbar");
+	var password = document.getElementById("pass").value;
+	var diff = password.length;
+
+	var req = document.getElementById("req");
+	req.innerHTML = (feedback(password));
+
+	if(diff >= 20){
+		dbar.classList = ('dbar excellent');
+	}else if(diff >= 15){
+		dbar.classList = ('dbar good');
+	}else if(diff >= 10){
+		dbar.classList = ('dbar easy');
+	}else if(diff >= 5){
+		dbar.classList = ('dbar trivial');
+	}else {dbar.classList = ('dbar');}
+}
+
+window.onload = function() {
+	labels();
+	//document.getElementById("pass").onkeyup = feedback();
+	document.getElementById("pass").addEventListener("keyup", function(){difficulty();});
 }
