@@ -33,7 +33,9 @@ body{
 	border-width: 0 0 2px;
   	border-color: rgb(66, 66, 66)
 }
-.signInput input:focus{border-color: #3297FD;}
+.signInput.active input:focus {
+    border-color: #3297FD;
+}
 .signInput input.good{border-color: #008000;}
 .signInput input.bad{border-color: #ff0000;}
 
@@ -57,32 +59,27 @@ label{pointer-events: none;cursor: text;}
 #pass:focus + #requirements{display: block;}
 #requirements{display: none;text-align: left;color: red;}
 
-#diffic{position: absolute; width: 95%; height: 0px; background-color: rgb(200, 200, 200); margin: .5rem;-webkit-transition: .2s;transition: .2s;}
-#diffic.active{position: relative; height: 10px; -webkit-transition: height .25s;transition: height .25s;}
-#dbar{width: 0%; height:100%;}
+#difficult{position: absolute; width: 95%; height: 0px; background-color: rgb(200, 200, 200); margin: .5rem;-webkit-transition: .2s;transition: .2s;}
+.signInput.active #difficult{position: relative; height: 10px; -webkit-transition: .2s;transition: .2s;}
+#dbar{width: 0%; height:100%; -webkit-transition: .2s;transition: .2s;}
 #dbar.trivial{width: 1%; 
     background-color: red;
     box-shadow: 0 0 5px rgba(255, 0, 0, .5); 
-    -webkit-transition: .5s;
-    transition: .5s;
 }
 #dbar.easy{width: 33%; 
     background-color: orange;
     box-shadow: 0 0 5px rgba(255, 165, 0, .5); 
-    -webkit-transition: .5s;
-    transition: .5s;
+
 }
 #dbar.good{width: 66%; 
     background-color: yellow;
     box-shadow: 0 0 5px rgba(255, 255, 0, .5); 
-    -webkit-transition: .5s;
-    transition: .5s;
+ 
 }
 #dbar.excellent{width: 100%; 
     background-color: rgb(0, 255, 0);
     box-shadow: 0 0 5px rgba(0, 255, 0, .5); 
-    -webkit-transition: .5s;
-    transition: .5s;
+
 }
 
 /* icons */

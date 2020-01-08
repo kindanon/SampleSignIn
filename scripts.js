@@ -1,26 +1,41 @@
+
+//var	name = "name";
+//var	screenname = "uname";
+//var	password = "pass";
+//var	confirmpass = "passc";
+//var	phonenum = "phone";
+//var	email = "email";
+
+
 //make labels do the thing
 //-----------------------------------------------------------------
-function labels(){
-const signInput = document.querySelectorAll('.signInput');
-signInput.forEach(elem => {
-	const inputField = elem.querySelector('input');
-	const inputClass = elem.classList;
-	if (elem.querySelector("input").value){inputClass.add("active");}
-	inputField.addEventListener('focus', () => {
-		inputClass.add('active');});
-	inputField.addEventListener('blur', () => {
-		if(!inputField.value){inputClass.remove('active');}});
-})}
+function active(cntl, type){
+	if(type=="focus"){
+		cntl.conta.classList.add('active');
+	}else{
+		if (!cntl.input.value){
+			cntl.conta.classList.remove('active');
+		}
+	}
+}
 //-----------------------------------------------------------------
 
 
 //password stuff
 //-----------------------------------------------------------------
-function password(){
+function password(cntl, type){
 	//password
+	if(type=="focus"){
+
+	}
+	cntl.input.value;
+	
+	
+	
+	
 	var password = document.getElementById("pass");
 	password.addEventListener('focus', () => {
-		document.getElementById("diffic").classList = ('diffic active');});
+		document.getElementById("difficult").classList = ('diffic active');});
 	password.addEventListener('blur', () => {
 			if(password.value.length == 0){document.getElementById("diffic").classList = ('diffic');}})
 	document.getElementById("pass").addEventListener("input", function(){difficulty(password.value);});
@@ -32,6 +47,28 @@ function password(){
 		cpassword.classList.add(matching(password.value, cpassword.value))});
 	cpassword.addEventListener('blur', () => {
 		cpassword.classList.remove(matching(password.value, cpassword.value));});
+}
+
+function passwordc(){
+
+}
+
+function difficulty(password){
+	var dbar = document.getElementById("dbar");
+	var leng = password.length;
+
+	var req = document.getElementById("req");
+	req.innerHTML = (feedback(password));
+
+	if(leng >= 18){
+		dbar.classList = ('dbar excellent');
+	}else if(leng >= 12){
+		dbar.classList = ('dbar good');
+	}else if(leng >= 6){
+		dbar.classList = ('dbar easy');
+	}else if(leng >= 1){
+		dbar.classList = ('dbar trivial');
+	}else {dbar.classList = ('dbar');}
 }
 
 //realtime feedback stuff
@@ -56,24 +93,6 @@ function feedback(password){
 		return("no unicode please, it frightens the programmers");
 }}
 
-function difficulty(password){
-	var dbar = document.getElementById("dbar");
-	var leng = password.length;
-
-	var req = document.getElementById("req");
-	req.innerHTML = (feedback(password));
-
-	if(leng >= 18){
-		dbar.classList = ('dbar excellent');
-	}else if(leng >= 12){
-		dbar.classList = ('dbar good');
-	}else if(leng >= 6){
-		dbar.classList = ('dbar easy');
-	}else if(leng >= 1){
-		dbar.classList = ('dbar trivial');
-	}else {dbar.classList = ('dbar');}
-}
-
 function matching(password, cpassword){
 	if(password == cpassword){
 		return "good"
@@ -83,7 +102,7 @@ function matching(password, cpassword){
 }
 //-----------------------------------------------------------------
 
-//email formatting
+//formatting
 //-----------------------------------------------------------------
 function phone(){
 	var email = document.getElementById("phone");
@@ -100,8 +119,72 @@ function phone_formatting(){
 }
 //-----------------------------------------------------------------
 
+//attach listeners
+//need focus & blur & input
+
+
+function applyfocus(cntl){
+	active(cntl, "focus");
+	if(cntl.name == "name")
+		password(cntl, "focus")	
+	else if(cntl.name == "uname")
+		usern(cntl, "focus")
+	else if(cntl.name == "pass")
+		password(cntl, "focus")
+	else if(cntl.name == "passc")
+		passwordc(cntl, "focus")
+	else if(cntl.name == "phone")
+		phone(cntl, "focus")
+	else if(cntl.name == "email")
+		email(cntl, "focus")
+}
+function applyblur(cntl){
+	active(cntl, "blur");
+	if(cntl.name == "name")
+		password(cntl, "blur")	
+	else if(cntl.name == "uname")
+		usern(cntl, "blur")
+	else if(cntl.name == "pass")
+		password(cntl, "blur")
+	else if(cntl.name == "passc")
+		passwordc(cntl, "blur")
+	else if(cntl.name == "phone")
+		phone(cntl, "blur")
+	else if(cntl.name == "email")
+		email(cntl, "blur")
+}
+function applyinput(){
+
+}
+function removeinput(){
+
+}
+
 window.onload = function() {
-	labels();
-	password();
-	phone();
+	
+	const signInput = document.querySelectorAll('.signInput');
+	signInput.forEach(elem => {
+		const inputField = elem.querySelector('input');
+		
+		var cntl = {
+			input : elem.querySelector('input'),
+			label : elem.querySelector('label'),
+			icon  : elem.querySelector('img'),
+			conta : elem,
+			name : elem.querySelector('input').id
+		}
+
+		inputField.addEventListener('focus', () => {
+			applyfocus(cntl);
+			inputField.addEventListener('input', () => {
+				applyinput(cntl);
+			});
+		});
+		inputField.addEventListener('blur', () => {
+			applyblur(cntl);
+			inputField.removeEventListener('input', () => {
+				removeinput(cntl);
+			});
+		});
+	});
 }
