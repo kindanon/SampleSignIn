@@ -1,7 +1,7 @@
 /* general stuff */
 body{
     font-family: sans-serif;
-    background-color: black; 
+    background-color: whitesmoke; 
     display: flex; 
     align-items: center; 
     justify-content: center;
@@ -9,9 +9,9 @@ body{
 .superclass{
     text-align: center;
     border-radius: 1rem;
-    background-color: rgb(132, 132, 132);
+    background-color: rgb(211, 211, 211);
     padding: .5rem;
-    box-shadow: 0px 0px 25px blueviolet;
+    box-shadow: 0px 0px 25px lightgrey;
 }
 
 .superclass input{background-color: transparent;}
@@ -31,14 +31,14 @@ body{
     box-sizing: border-box;
 	border: solid;
 	border-width: 0 0 2px;
-  	border-color: rgb(33, 33, 33)
+  	border-color: rgb(66, 66, 66)
 }
-.signInput input:focus{
-  	border-color: rgb(33, 33, 165);
-}
+.signInput input:focus{border-color: #3297FD;}
+.signInput input.good{border-color: #008000;}
+.signInput input.bad{border-color: #ff0000;}
 
 /* label stuff */
-label{cursor: text;}
+label{pointer-events: none;cursor: text;}
 .signInput label {
     padding-left: 2rem;
     position: absolute; 
@@ -46,7 +46,7 @@ label{cursor: text;}
         	transform-origin: top left;
   	-webkit-transform: translate(0, 1.5rem) scale(1);
         	transform: translate(0, 1.5rem) scale(1);
-      transition: all .1s ease-in-out;
+      transition: all .25s ease-in-out;
 }
 .signInput.active label {
 	-webkit-transform: translate(-1.5rem, .20rem) scale(0.75);
@@ -55,19 +55,41 @@ label{cursor: text;}
 
 /* requirements + diff */
 #pass:focus + #requirements{display: block;}
-#requirements{text-align: left;color: red;}
+#requirements{display: none;text-align: left;color: red;}
 
-#diffic{width: 95%; height: 10px;background-color: grey; margin: .5rem;}
+#diffic{position: absolute; width: 95%; height: 0px; background-color: rgb(200, 200, 200); margin: .5rem;-webkit-transition: .2s;transition: .2s;}
+#diffic.active{position: relative; height: 10px; -webkit-transition: height .25s;transition: height .25s;}
 #dbar{width: 0%; height:100%;}
-#dbar.trivial{width: 1%; background-color: red;box-shadow: 0 0 5px rgba(255, 0, 0, .5); -webkit-transition: .5s;transition: .5s;}
-#dbar.easy{width: 33%; background-color: orange;box-shadow: 0 0 5px rgba(255, 165, 0, .5); -webkit-transition: .5s;transition: .5s;}
-#dbar.good{width: 66%; background-color: yellow;box-shadow: 0 0 5px rgba(255, 255, 0, .5); -webkit-transition: .5s;transition: .5s;}
-#dbar.excellent{width: 100%; background-color: rgb(0, 255, 0);box-shadow: 0 0 5px rgba(0, 255, 0, .5); -webkit-transition: .5s;transition: .5s;}
+#dbar.trivial{width: 1%; 
+    background-color: red;
+    box-shadow: 0 0 5px rgba(255, 0, 0, .5); 
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+#dbar.easy{width: 33%; 
+    background-color: orange;
+    box-shadow: 0 0 5px rgba(255, 165, 0, .5); 
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+#dbar.good{width: 66%; 
+    background-color: yellow;
+    box-shadow: 0 0 5px rgba(255, 255, 0, .5); 
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+#dbar.excellent{width: 100%; 
+    background-color: rgb(0, 255, 0);
+    box-shadow: 0 0 5px rgba(0, 255, 0, .5); 
+    -webkit-transition: .5s;
+    transition: .5s;
+}
 
 /* icons */
-.signInput b{
+.signInput img{
     position: absolute;
+    height: 1rem;width: 1rem;
     bottom: 0;
     left: 0;
-    padding: .5rem;
+    padding: .5rem 1rem;
 }
